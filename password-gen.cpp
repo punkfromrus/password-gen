@@ -3,6 +3,11 @@
 #include <ctime>
 #include <string>
 
+const char upperC[] = {"ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
+const char lowerC[] = {"abcdefghijklmnopqrstuvwxyz"};
+const char digits[] = {"1234567890"};
+const char spec[] = { "!@#$%^&*()-+_=\\\'\",.?<>{}[]|:;~/ " };
+
 int main(int argc, char *argv[])
 {
 	int N = 8;
@@ -23,6 +28,7 @@ int main(int argc, char *argv[])
 		if (arg == "--char" || arg == "-c")
 		{
 			isChar = false;
+			isDigit = true;
 			continue;
 		}
 
@@ -45,22 +51,22 @@ int main(int argc, char *argv[])
 		{
 			bool upperCase = rand() % 2;
 			char ch;
-			if (upperCase) ch = rand() % 25 + 65;
-			else ch = rand() % 25 + 97;
+			if (upperCase) ch = upperC[rand() % 26];
+			else ch = lowerC[rand() % 26];
 			out += ch;
 			continue;
 		}
 
 		if (mod == 1 && isDigit)
 		{
-			char ch = rand() % 10 + 48;
+			char ch = digits[rand() % 10];
 			out += ch;
 			continue;
 		}
 
 		if (mod == 2 && isSpec)
 		{
-			char ch = rand() % 15 + 33;
+			char ch = spec[rand() % 32];
 			out += ch;
 			continue;
 		}
